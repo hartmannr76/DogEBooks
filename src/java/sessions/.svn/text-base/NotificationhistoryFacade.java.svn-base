@@ -1,0 +1,82 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sessions;
+
+import entity.NotificationEntity;
+import entity.NotificationhistoryEntity;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import user.Notification;
+
+/**
+ *
+ * @author
+ * Piotr
+ */
+@Stateless
+public class NotificationhistoryFacade extends AbstractFacade<NotificationhistoryEntity> {
+    @PersistenceContext(unitName = "cse308entitytestPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public NotificationhistoryFacade() {
+        super(NotificationhistoryEntity.class);
+    }
+    
+      public List<Notification> getAllNotifications()
+    {
+         List<NotificationhistoryEntity> listOfNotifications = this.findAll();
+         List<Notification> listOfNotificationObjects = new ArrayList();
+         
+         
+         for(int i = 0; i < listOfNotifications.size(); i++)
+         {
+             NotificationhistoryEntity x = listOfNotifications.get(i);
+             
+            Notification notificationToBeAddedToList = convertToNotification(x);
+             listOfNotificationObjects.add(notificationToBeAddedToList);
+         }
+        
+         
+         return listOfNotificationObjects;
+    }
+      
+          public List<Notification> getAllNotificationsByUserId(int initUserId)
+    {
+         List<NotificationhistoryEntity> listOfNotifications = this.findAll();
+         List<Notification> listOfNotificationObjects = new ArrayList();
+         
+         
+         for(int i = 0; i < listOfNotifications.size(); i++)
+         {
+            NotificationhistoryEntity x = listOfNotifications.get(i);
+             
+            Notification notificationToBeAddedToList = convertToNotification(x);
+            
+            if(notificationToBeAddedToList.getUserID() == initUserId)
+            {
+                  listOfNotificationObjects.add(notificationToBeAddedToList);
+            }
+         }
+        
+         
+         return listOfNotificationObjects;
+    }
+      
+      public Notification convertToNotification(NotificationhistoryEntity n)
+      {
+          NotificationEntity notificationEntity = n.getNotificationId();
+          Notification notificationToBeReturned = new Notification(notificationEntity.getIdNotification(), notificationEntity.getDateOfNoticatation(), notificationEntity.getNotificationText(), n.getHasItBeenSeen(), n.getUserId().getIdUserLibraryCode());
+          return notificationToBeReturned;
+      }
+      
+}

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                pageTitle
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="leftNav">
+					<h:form>
+                                    <h3><h:outputText value="#{viewReq.typeViewed.textRep}"></h:outputText></h3>
+					<ul>
+                                            <ui:repeat var="row" value="#{viewReq.typeViewed.categoriesForType}">
+						<li><h:commandLink action="#{viewReq.viewCategory()}">
+                                                    <f:param name="catId" value="#{row.categoryId}" /><h:outputText value="#{row.textRep}" /></h:commandLink></li>
+                                            </ui:repeat>
+						</ul>
+                                    </h:form>
+				</div>
+				<div id="rightContent">
+                                    <h:form>
+					<p><h:commandLink action="#{viewReq.viewIndex()}">Home</h:commandLink> > 
+                                        <h:commandLink action="#{viewReq.viewType()}" value="#{viewReq.typeViewed.textRep}">
+                                            <f:param name="typeId" value="#{viewReq.typeViewed.typeId}" /></h:commandLink> > 
+                                        <h:commandLink action="#{viewReq.viewCategory()}" value="#{viewReq.categoryViewed.textRep}">
+                                            <f:param name="catId" value="#{viewReq.categoryViewed.categoryId}" /></h:commandLink> >
+                                        <h:commandLink action="#{viewReq.viewBook()}" value="#{viewReq.viewableItem.itemName}">
+                                            <f:param name="bookId" value="#{viewReq.viewableItem.itemId}" /></h:commandLink></p>
+                                        </h:form>
+                                    <h:form>
+                                    <h2><h:outputText value="#{viewReq.viewableItem.itemName}" /></h2>
+					<div id="bookDisplay">
+                                                <h:graphicImage url="#{viewReq.viewableItem.bookImage}" />
+                                                <p><strong>Author: </strong><h:outputText value="#{viewReq.viewableItem.author}" /></p>
+						<p><strong>Publisher: </strong>Publisher here</p>
+						<p><strong>Relative Categories: </strong><a href="#">Category</a><br /><a href="#">Another Category</a></p>
+						<p><strong>Language(s): </strong>Language</p>
+                                                <p><strong>Library Copies: </strong><h:outputText value="#{viewReq.viewableItem.libraryCopies}" /></p>
+                                                <p><strong>Available Copies: </strong><h:outputText value="#{viewReq.viewableItem.availableCopies}" /></p>
+                                                <h:commandLink action="#{cartReq.addItemToCart()}" rendered="#{viewReq.viewableItem.availableCopies != 0}" class="booksA">Add to Cart</h:commandLink>
+                                                <h:commandLink action="#{accountReq.currentUser.addItemIntoWishlist(currentWishlist, viewReq.viewableItem)}" class="booksA" rendered="#{accountReq.login() != null}">Add to Wishlist</h:commandLink>
+                                                <h:selectOneMenu value="#{currentWishlist}" rendered="#{accountReq.login() != null}" class="wishlistSelect">
+                                                    <f:selectItems value="#{accountReq.currentUser.wishlists}" />
+                                                </h:selectOneMenu>
+						
+						<div class="bookRate">
+							<a href="#"><img src="../images/thumb_up.png" />Thumbs Up</a>
+							<a href="#"><img src="../images/thumb_down.png" />Thumbs Down</a>
+						</div>
+						
+						<div class="bookShare">
+							<fieldset>
+								<legend>Share</legend>
+								<a href="#">Email</a>
+								<a href="#">Facebook</a>
+								<a href="#">Twitter</a>
+							</fieldset>
+						</div>
+					</div>
+					<div id="bookInfo">
+						<h3>Description</h3>
+						<hr />
+                                                <p><h:outputText value="#{viewReq.viewableItem.description}" /></p>
+						<h3>About the Author</h3>
+						<hr />
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sapien lectus, rhoncus non viverra non, 
+							varius ut eros. Etiam tempus, lectus quis auctor sagittis, dui ligula ornare ligula, eu volutpat mauris 
+							est at enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+							Vestibulum id nisi quam, id porttitor enim. Vestibulum pretium, nisl in ornare malesuada, leo velit 
+							posuere dolor, ut aliquam nisi ante sit amet urna. </p>
+					</div>
+                                    </h:form>
+				</div>
+			</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

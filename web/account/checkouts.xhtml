@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Account Main
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="leftNavAccount">
+					<h:form>
+					<ul class="mainCatDrop">
+                                            <h:commandLink action="view.xhtml?faces-redirect=true" value="My Account" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="cart.xhtml?faces-redirect=true" value="My Cart" />
+						<h:commandLink action="checkouts.xhtml?faces-redirect=true" value="My Checkouts" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="wishlists.xhtml?faces-redirect=true" value="Wishlists" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="#" value="View Wait List" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="#" value="Rate Titles" rendered="#{accountReq.login() != null}" />
+					</ul>
+                                    </h:form>
+                                </div>
+					<div id="rightContent">
+                                            <h:form rendered="#{accountReq.login() != null}">
+						<p><h:commandLink action="#{viewReq.viewIndex()}">Home</h:commandLink> > <a href="view.html">My Checkouts</a> </p>
+                                                </h:form>
+						<h2>My Checkouts</h2>
+						<div id="cartPageList">
+                                                    <h:form>
+							<ul>
+                                                            <ui:repeat var="row" value="#{accountReq.currentCheckouts}">
+								<li>
+                                                                    <h:graphicImage url="#{row.bookImage}" /><p>Title: <h:outputText value="#{row.itemName}" /><br />
+                                                                        Author: <h:outputText value="#{row.author}" /><br />
+									Date Received: 03 - 22 - 2012<br />
+                                                                        Due Date: <h:outputText value="#{row.dueDate}" /></p>
+                                                                    <h:commandButton value="Download" onclick="alert('Your book has been downloaded');" rendered="#{row.publisher == null}"/>
+                                                                    <h:outputLink value="http://localhost:8080/Amazoink/" rendered="#{row.publisher != null}">
+                                                                        <f:param name="isbn" value="#{row.ISBN}"/>
+                                                                        <f:param name="libraryCode" value="0001"/>
+                                                                        Download</h:outputLink>
+                                                                    <h:commandButton action="#{accountReq.returnItem(row)}" value="Return Item" />
+                                                                </li>
+                                                            </ui:repeat>
+							</ul>
+                                                    </h:form>
+						</div>
+					</div>
+				</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                pageTitle
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="rightContent">
+                                    <h2>Advanced Search</h2>
+                                    <h:form>
+                                        <table>
+                                            <tr>
+                                                <td>Title:</td><td><h:inputText value="#{viewReq.searchTitle}"></h:inputText></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Author:</td><td><h:inputText value="#{viewReq.searchAuthor}"></h:inputText></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Keyword:</td><td><h:inputText value="#{viewReq.searchKeyword}"></h:inputText></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Format:</td><td><h:selectOneMenu value="#{viewReq.searchFormat}">
+                                                        <f:selectItem itemValue="0" itemLabel="All Formats" />
+                                                        <f:selectItem itemValue="1" itemLabel="eBook" />
+                                                        <f:selectItem itemValue="2" itemLabel="Audiobook" />
+                                                        <f:selectItem itemValue="3" itemLabel="Music" />
+                                                    </h:selectOneMenu></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Subject:</td><td><h:selectOneMenu value="#{viewReq.searchSubject}">
+                                                        <f:selectItem itemValue="allcategories" itemLabel="All Categories" />
+                                                        <f:selectItems var="row" value="#{viewReq.categoriesForSearch}" itemLabel="#{row}" itemValue="#{row}" />
+                                                    </h:selectOneMenu></td>
+                                            </tr>
+                                            <tr><td><h:commandButton value="Submit" action="#{viewReq.handleAdvancedSearchSubmit()}" /></td></tr>
+                                        </table>
+                                            </h:form>
+				</div>
+			</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

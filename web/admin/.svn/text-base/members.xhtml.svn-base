@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div id="header">
+				<div id="welcome">&nbsp;Manage eBook Members</div><div id="logout"><a href="logout.html"><img src="images/logout.jpg" alt="Logout" border="none" /></a></div>
+			</div><br />
+			<div id="mainContent">
+				<form id="1" name="crud" method="post">
+				<center><input type="button" value="Add Member" name="add" onClick="return OnAdd();" /> | <input type="button" value="Edit Member" name="edit" onClick="return OnEdit();" /> | <input type="button" value="Delete Member" name="delete" onClick="return OnDelete();" /></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>Library ID</td>
+						<td> | Username</td>
+						<td> | Password</td>
+						<td> | E-mail</td>
+						<td> | First Name</td>
+						<td> | Last Name </td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="2412" /></td>
+						<td>2222</td>
+						<td>mjackson</td>
+						<td>********</td>
+						<td>mjackson@yahoo.com</td>
+						<td>Michael</td>
+						<td>Jackson</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1791" /></td>
+						<td>1111</td>
+						<td>mjordan</td>
+						<td>********</td>
+						<td>mjordan@gmail.com</td>
+						<td>Michael</td>
+						<td>Jordan</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1337" /></td>
+						<td>3333</td>
+						<td>mbolton</td>
+						<td>********</td>
+						<td>mbolton@gmail.com</td>
+						<td>Michael</td>
+						<td>Bolton</td>
+					</tr>
+				</table>
+                                </form>
+			</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

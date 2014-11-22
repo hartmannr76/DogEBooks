@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div id="header">
+                    <div id="welcome">&nbsp;<h:outputText value="#{adminReq.message}" /></div>
+                    <div id="logout">
+                        <h:commandLink action="#{accountReq.logout()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<img src="images/statistics.jpg" alt="Statistics" width="100%" />
+                        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

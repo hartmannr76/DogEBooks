@@ -1,0 +1,64 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sessions;
+
+import entity.AudiobookEntity;
+import entity.ItemEntity;
+import item.AudioBook;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import item.AudioBook;
+
+/**
+ *
+ * @author
+ * Piotr
+ */
+@Stateless
+public class AudiobookFacade extends AbstractFacade<AudiobookEntity> {
+    @PersistenceContext(unitName = "cse308entitytestPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public AudiobookFacade() {
+        super(AudiobookEntity.class);
+    }
+    
+    public List<AudioBook> getAllAudiobooks()
+    {
+         List<AudiobookEntity> listOfAudiobooks = this.findAll();
+         List<AudioBook> listOfAudiobooksAsObjects = new ArrayList();
+         
+         
+         for(int i = 0; i < listOfAudiobooks.size(); i++)
+         {
+             AudiobookEntity x = listOfAudiobooks.get(i);
+             
+             AudioBook audioBookToBeAddedToList = convertToAudiobook(x);
+             listOfAudiobooksAsObjects.add(audioBookToBeAddedToList);
+         }
+        
+         
+         return listOfAudiobooksAsObjects;
+    }
+    
+    
+    public AudioBook convertToAudiobook(AudiobookEntity a)
+    {
+        ItemEntity i = a.getItemId();
+        AudioBook audioBookToBeReturned = new AudioBook(i.getItemName(), i.getIdItem(), i.getItemImage(), i.getType(), i.getBookSubject(), i.getAuthor(), a.getIsbn(), a.getDurationOfBook(), a.getSampleOfItemDownloadURL(), a.getExerptOfItemDownloadURL(), i.getNumberOfLikes(), i.getNumberOfDislikes(), i.getAvailableCopies(), i.getLibraryCopies(), i.getDateAdded());
+
+       
+        return audioBookToBeReturned;
+    }
+    
+}

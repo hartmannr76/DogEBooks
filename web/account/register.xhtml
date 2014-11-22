@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Account Register
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="contentForm">
+					<h3>Register Your Library Card</h3>
+					<p>Access to this site is limited to participating library patrons.</p>
+					<p>To register, please choose your library from the list and enter your library barcode or username below.</p>
+                                        <h:form>
+						<label><strong>Library</strong></label><br />
+						<select>
+							<option value="0">--</option>
+							<option value="1">Library 1</option>
+							<option value="2">Library 2</option>
+							<option value="3">Library 3</option>
+							<option value="4">Library 4</option>
+							<option value="5">Library 5</option>
+							<option value="6">Library 6</option>
+							<option value="7">Library 7</option>
+							<option value="8">Library 8</option>
+							<option value="9">Library 9</option>
+							<option value="10">Library 10</option>
+						</select><br /><br />
+						<label><strong>Barcode</strong></label><br />
+                                                <h:inputText value="#{accountReq.barCode}" required="true" /><br /><br />
+                                                <label><strong>Requested Username</strong></label><br />
+                                                <h:inputText value="#{accountReq.username}" required="true" /><br /><br />
+                                                <label><strong>Requested Password</strong></label><br />
+                                                <h:inputSecret value="#{accountReq.password}" required="true" /><br /><br />
+                                                <label><strong>Email</strong></label><br />
+                                                <h:inputText id="email" value="#{accountReq.email}" required="true">
+                                                    <f:validator validatorId="validator.EmailValidator" />
+                                                </h:inputText><h:message for="email" style="color:red" /><br /><br />
+                                                <label><strong>First Name</strong></label><br />
+						<h:inputText value="#{accountReq.firstName}" required="true" /><br /><br />
+                                                <label><strong>Last Name</strong></label><br />
+						<h:inputText value="#{accountReq.lastName}" required="true" /><br /><br />
+                                                <label><strong>Mobile Number</strong></label><br />
+                                                <h:inputText value="#{accountReq.mobileNumber}" required="true" /><br /><br />
+                                                <h:commandButton value="Submit" action="#{accountReq.createUser()}" />
+					</h:form>
+				</div>
+			</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

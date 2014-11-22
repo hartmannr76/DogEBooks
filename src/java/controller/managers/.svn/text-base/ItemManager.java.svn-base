@@ -1,0 +1,149 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller.managers;
+
+import enums.Category;
+import enums.ItemType;
+import item.*;
+import java.util.*;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ApplicationScoped;
+import org.apache.commons.lang.ArrayUtils;
+import sessions.AudiobookFacade;
+import sessions.EbookFacade;
+import sessions.MusicFacade;
+
+/**
+ *
+ * @author Ricky
+ */
+@ManagedBean
+@ApplicationScoped
+@Stateless
+public class ItemManager {
+
+    List<Item> listOfItems;
+    @EJB
+    EbookFacade ebookFacade;
+    
+    @EJB
+    MusicFacade musicFacade;
+    
+    @EJB
+    AudiobookFacade audioBookFacade;
+    
+    /**
+     * Creates a new instance of ItemManager
+     */
+    public ItemManager() 
+    {
+    }
+    
+    @PostConstruct
+    public void init() 
+    {
+        listOfItems = new ArrayList<Item>();
+        initializeAllEbooks();
+        initializeAllAudioBooks();
+	initializeAllMusic();
+        
+    }
+     
+    public void initializeAllEbooks()
+    {
+        List <EBook> listOfEbooks = ebookFacade.getAllEbooks();
+        listOfItems.addAll(listOfEbooks);
+    }
+	
+    public void initializeAllAudioBooks()
+    {
+            List <AudioBook> listOfAudioBooks = audioBookFacade.getAllAudiobooks();
+            listOfItems.addAll(listOfAudioBooks);
+
+
+    }
+
+    public void initializeAllMusic()
+    {
+            List <Music> listOfMusic = musicFacade.getAllMusic();
+            listOfMusic.addAll(listOfMusic);
+
+    }
+    
+    public Item getItemById(int id) {
+        for(Item i : listOfItems) {
+            if(i.getBookId() == id)
+                return i;
+        }
+        return null;
+    }
+    
+    public void removeItemFromLibrary(int id) {
+        for(Item i : listOfItems) {
+            if(i.getBookId() == id) {
+                listOfItems.remove(i);
+                break;
+            }
+        }
+    }
+    
+    public List<Item> getItemsByCategory(Category c) {
+        List<Item> listToReturn = new ArrayList<Item>();
+
+        for(Item i : listOfItems) {
+            if(i.getItemCategory() == c.getCategoryId())
+                listToReturn.add(i);
+        }
+        
+        return listToReturn;
+    }
+    
+    public List<List<Item>> getTypeLists(ItemType it) {
+        List<List<Item>> returnSet = new ArrayList<List<Item>>();
+        
+        // First list will be for newest items of type
+        List<Item> sortSet = listOfItems;
+        Collections.sort(sortSet, new Comparator<Item>(){
+           @Override
+           public int compare(Item i1, Item i2) {
+               return i2.getDateAdded().compareTo(i1.getDateAdded());
+           }
+        });
+        List<Item> newestItemList = new ArrayList<Item>();
+        
+        // Only get the first 4 items
+        for(int i = 0; i < 4; i++)
+            newestItemList.add(sortSet.get(i));
+        
+        // Last list will be for highest rated items of type
+        Collections.sort(sortSet, new Comparator<Item>(){
+           @Override
+           public int compare(Item i1, Item i2) {
+               return Integer.compare(i2.getNumberOfLikes(), i1.getNumberOfLikes());
+           }
+        });
+        List<Item> highestRatedList = new ArrayList<Item>();
+        
+        // Only get the first 4 items
+        for(int i = 0; i < 4; i++)
+            highestRatedList.add(sortSet.get(i));
+
+        returnSet.add(newestItemList);
+        returnSet.add(highestRatedList);
+        
+        return returnSet;
+    }
+    
+    public List<Item> getList() {
+        return listOfItems;
+    }
+    
+    public int getItemDisplaySize() {
+        return listOfItems.size();
+    }
+}

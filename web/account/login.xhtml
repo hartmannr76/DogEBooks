@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Account Main
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+                            <h:panelGrid class="message" rendered="#{accountReq.message != null}">
+                                <h:outputText class="oops" value="#{accountReq.message}" rendered="#{accountReq.success == false}" />
+                                <h:outputText class="success" value="#{accountReq.message}" rendered="#{accountReq.success == true}" />
+                                <h:outputLink target="index.xhtml" class="oops" value="Go Home" rendered="#{accountReq.success == true}" />
+                            </h:panelGrid>
+                            <h:form rendered="#{accountReq.login() == null}" id="largeLogin">
+                            <label for="name">Username:</label>
+                            <h:inputText value="#{accountReq.username}"></h:inputText><br />
+                            <label for="password">Password:</label>
+                            <h:inputSecret value="#{accountReq.password}"></h:inputSecret><br />
+                            <h:commandButton value="Login" action="#{accountReq.doLogin()}">
+                            </h:commandButton>
+                            <h:commandButton action="#{accountReq.viewRegister()}" value="Register Library Card"></h:commandButton><br />
+                            <h:outputLink target="passwordRecover.xhtml" style="text-align: center;">Forgot Password?</h:outputLink>
+                    </h:form>
+                        </div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

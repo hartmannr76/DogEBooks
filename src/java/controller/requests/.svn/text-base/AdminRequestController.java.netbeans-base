@@ -1,0 +1,270 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller.requests;
+
+import controller.managers.ItemManager;
+import enums.Category;
+import enums.ItemType;
+import item.Item;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.servlet.ServletContext;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.myfaces.custom.fileupload.UploadedFile;
+
+/**
+ *
+ * @author Ricky
+ */
+@ManagedBean (name = "adminReq")
+@ViewScoped
+public class AdminRequestController implements Serializable{
+
+    boolean prepared = false;
+    List<Item> displayList;
+    @EJB
+    ItemManager im;
+    String message = "Welcome Admin!";
+    String itemTitle;
+    int itemISBN;
+    String itemAuthor;
+    String itemDescription;
+    Category itemCategory;
+    ItemType itemItemType;
+    UploadedFile itemImageLocation;
+    private static final String imageDir = "/images";
+    private String realPath;
+    private Map<Long, Boolean> itemsToDelete = new HashMap<Long, Boolean>();
+    
+
+    /**
+     * Creates a new instance of AdminRequestController
+     */
+    public AdminRequestController() {
+        
+    }
+    
+    @PostConstruct
+    public void init() {
+        if(getPageSet().equals("eBooks.xhtml")) {
+            prepareEBooks();
+        }
+        
+        else if(getPageSet().equals("audioBooks.xhtml")) {
+            prepareAudiobooks();
+        }
+        
+        else if(getPageSet().equals("music.xhtml")) {
+            prepareMusic();
+        }
+    }
+    
+    public String getPageSet(){
+        String orig = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        String[] postSplit = orig.split("/");
+        return postSplit[2];
+    }
+    
+    /*
+     * Prepare pages
+     */
+    
+    public void prepareEBooks() {
+        displayList = new ArrayList<Item>();
+        /*for(int i = 1; i < im.getItemDisplaySize(); i++)
+            displayList.add(im.getItemById(i));
+        */
+        displayList = im.getList();
+    }
+    
+    public void prepareAudiobooks() {
+        displayList = new ArrayList<Item>();
+        /*for(int i = 1; i < im.getItemDisplaySize(); i++)
+            displayList.add(im.getItemById(i));
+        */
+        displayList = im.getList();
+    }
+    
+    public void prepareMusic() {
+        displayList = new ArrayList<Item>();
+        /*for(int i = 1; i < im.getItemDisplaySize(); i++)
+            displayList.add(im.getItemById(i));
+        */
+        displayList = im.getList();
+    }
+    
+    /*
+     * Administrator based interactive functions
+     */
+    
+    public void addEBook() throws IOException {
+        //EBook ebookToAdd = new EBook(itemTitle, 11, itemImageLocation, ItemType.EBOOK.getTypeId());
+        String fileName = FilenameUtils.getName(itemImageLocation.getName());
+        String contentType = itemImageLocation.getContentType();
+        byte[] bytes = itemImageLocation.getBytes();
+        ServletContext sc = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        this.realPath = sc.getRealPath(imageDir); // Acquire the actual path of the requested drectory
+        System.out.print(realPath);
+        
+        /*
+         * We need to create a new file that contains the directory to output
+         * as well as the name we request. We then need to write the file info
+         * into the correct location.
+         */
+        
+        File tempFile = new File(new File(realPath), fileName); 
+        FileOutputStream fos = new FileOutputStream(tempFile);
+        fos.write(bytes);
+        fos.close();
+        System.out.print(fileName);
+        System.out.print(contentType);
+    }
+    
+    public String deleteItems() {
+        for(Long iL : itemsToDelete.keySet()) {
+            if(itemsToDelete.get(iL) == true) {
+                System.out.print(iL.intValue());
+                im.removeItemFromLibrary(iL.intValue());
+            }            
+        }
+        return "admin/eBooks.xhtml?faces-redirect=true";
+    }
+    
+    /*
+     * Getters & Setters
+     */
+    
+    public boolean isPrepared() {
+        return prepared;  
+    }
+    
+    public String getMessage() {
+        return message;
+    }
+    
+    public List<Item> getDisplayList() {
+        return displayList;
+    }
+
+    public String getItemAuthor() {
+        return itemAuthor;
+    }
+
+    public void setItemAuthor(String itemAuthor) {
+        this.itemAuthor = itemAuthor;
+    }
+
+    public Category getItemCategory() {
+        return itemCategory;
+    }
+
+    public void setItemCategory(Category itemCategory) {
+        this.itemCategory = itemCategory;
+    }
+    
+    public SelectItem[] getItemCategories() {
+        SelectItem[] items = new SelectItem[Category.values().length];
+        int i = 0;
+        for(Category c: Category.values())
+            items[i++] = new SelectItem(c, c.getTextRep());
+        return items;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
+    public int getItemISBN() {
+        return itemISBN;
+    }
+
+    public void setItemISBN(int itemISBN) {
+        this.itemISBN = itemISBN;
+    }
+
+    public ItemType getItemItemType() {
+        return itemItemType;
+    }
+
+    public void setItemItemType(ItemType itemItemType) {
+        this.itemItemType = itemItemType;
+    }
+
+    public String getItemTitle() {
+        return itemTitle;
+    }
+
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
+    }
+
+    public UploadedFile getItemImageLocation() {
+        return itemImageLocation;
+    }
+
+    public void setItemImageLocation(UploadedFile itemImageLocation) {
+        this.itemImageLocation = itemImageLocation;
+    }
+
+    public Map<Long, Boolean> getItemsToDelete() {
+        return itemsToDelete;
+    }
+
+    public void setItemsToDelete(Map<Long, Boolean> itemsToDelete) {
+        this.itemsToDelete = itemsToDelete;
+    }
+    
+    public String viewDashboard() {
+        return "/admin/index.xhtml?faces-redirect=true";
+    }
+    
+    public String viewStaff() {
+        return "/admin/staff.xhtml?faces-redirect=true";
+    }
+    
+    public String viewReports() {
+        return "/admin/reports.xhtml?faces-redirect=true";
+    }
+    
+    public String viewMessages() {
+        return "/admin/messages.xhtml?faces-redirect=true";
+    }
+    
+    public String viewCSInquiries() {
+        return "/admin/customerService.xhtml?faces-redirect=true";
+    }
+    
+    public String vieweBooks() {
+        return "/admin/eBooks.xhtml?faces-redirect=true";
+    }
+    
+    public String viewAudiobooks() {
+        return "/admin/audioBooks.xhtml?faces-redirect=true";
+    }
+    
+    public String viewMembers() {
+        return "/admin/members.xhtml?faces-redirect=true";
+    }
+    
+    public String viewMusic() {
+        return "/admin/music.xhtml?faces-redirect=true";
+    }
+}

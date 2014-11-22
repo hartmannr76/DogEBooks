@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/web/WEB-INF
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/web/WEB-INF/faces-config.xml
+END
+beans.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/web/WEB-INF/beans.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/web/WEB-INF/web.xml
+END

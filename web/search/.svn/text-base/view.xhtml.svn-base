@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                pageTitle
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="leftNav">
+					<h:form>
+                                    <h3><h:outputText value="#{viewReq.typeViewed.textRep}"></h:outputText></h3>
+					<ul>
+                                            <ui:repeat var="row" value="#{viewReq.typeViewed.categoriesForType}">
+						<li><h:commandLink action="#{viewReq.viewCategory()}">
+                                                    <f:param name="catId" value="#{row.categoryId}" /><h:outputText value="#{row.textRep}" /></h:commandLink></li>
+                                            </ui:repeat>
+						</ul>
+                                    </h:form>
+				</div>
+				<div id="rightContent">
+                                    <h:form>
+                                    <p><h:commandLink action="#{viewReq.viewIndex()}">Home</h:commandLink> > 
+                                        <h:commandLink action="#{viewReq.viewType()}" value="#{viewReq.typeViewed.textRep}">
+                                            <f:param name="typeId" value="#{viewReq.typeViewed.typeId}" /></h:commandLink> > 
+                                        <h:commandLink action="#{viewReq.viewCategory()}" value="#{viewReq.categoryViewed.textRep}">
+                                            <f:param name="catId" value="#{viewReq.categoryViewed.categoryId}" /></h:commandLink></p>
+					</h:form>
+                                    <h2><h:outputText value="#{viewReq.categoryViewed.textRep}" /></h2>
+                                        <h:form>
+					<ul>
+                                            <ui:repeat var="row" value="#{viewReq.listOfeItems}">
+                                                <h:commandLink action="#{viewReq.viewBook()}">
+                                                    <f:param name="bookId" value="#{row.bookId}" />
+                                                    <li>
+                                                        <h:graphicImage url="#{row.bookImage}" /><br />
+                                                        <h:outputText value="#{row.itemName}" />
+                                                    </li>
+                                                </h:commandLink>
+                                            </ui:repeat>
+                                        </ul>
+                                            </h:form>
+				</div>
+			</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

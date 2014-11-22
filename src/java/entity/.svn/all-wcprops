@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/src/java/entity
+END
+StaffaccountEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/StaffaccountEntity.java
+END
+StaffmessagehistoryEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/StaffmessagehistoryEntity.java
+END
+NotificationEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/NotificationEntity.java
+END
+NotificationhistoryEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/NotificationhistoryEntity.java
+END
+StaffmessageEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/StaffmessageEntity.java
+END
+MusicEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/MusicEntity.java
+END
+WishlistEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/WishlistEntity.java
+END
+ItemEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/ItemEntity.java
+END
+UseraccountEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/UseraccountEntity.java
+END
+AudiobookEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/AudiobookEntity.java
+END
+EbookEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/entity/EbookEntity.java
+END

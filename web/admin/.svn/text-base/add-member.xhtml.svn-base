@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div id="header">
+				<div id="welcome">&nbsp;Manage eBooks - Add eBook</div><div id="logout"><a href="logout.html"><img src="images/logout.jpg" alt="Logout" border="none" /></a></div>
+			</div><br />
+			<div id="mainContent">
+                            <h:form enctype="multipart/form-data">
+				<table>
+					<tr>
+						<td>Book ISBN:
+                                                    <h:inputText value="#{adminReq.itemISBN}" /></td>
+					</tr>
+					<tr>
+						<td>Title: 
+                                                    <h:inputText value="#{adminReq.itemTitle}" /></td>
+					</tr>
+					<tr>
+						<td>Author: 
+                                                    <h:inputText value="#{adminReq.itemAuthor}" /></td>
+					</tr>
+					<tr>
+						<td>Category: 
+                                                <h:selectOneMenu value="#{adminReq.itemCategory}">
+                                                    <f:selectItems value="#{adminReq.itemCategories}" />
+                                                </h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td>Description: 
+                                                    <h:inputTextarea value="#{adminReq.itemDescription}" /></td>
+					</tr>
+                                        <tr>
+						<td>Image Location: 
+                                                    <t:inputFileUpload value="#{adminReq.itemImageLocation}" accept="image/"
+                                                                       storage="file" required="true"/></td>
+					</tr>
+				</table>
+                                        <h:commandButton value="Add" action="#{adminReq.addEBook()}" />
+                              </h:form>
+			</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

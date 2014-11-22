@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form enctype="multipart/form-data">
+                <div id="header">
+				<div id="welcome">&nbsp;Manage eBooks - Add eBook</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<div id="mainContent">
+                            
+				<table>
+					<tr>
+						<td>Bar Code:
+                                                    <h:inputText value="#{accountReq.barCode}" required="true" /></td>
+					</tr>
+					<tr>
+						<td>Username: 
+                                                    <h:inputText value="#{accountReq.username}" required="true" /></td>
+					</tr>
+					<tr>
+						<td>Password: 
+                                                    <h:inputSecret value="#{accountReq.password}" required="true" /></td>
+					</tr>
+					<tr>
+						<td>Email: 
+                                                <h:inputText id="email" value="#{accountReq.email}" required="true">
+                                                    <f:validator validatorId="validator.EmailValidator" />
+                                                </h:inputText><h:message for="email" style="color:red" /></td>
+					</tr>
+                                        <tr>
+						<td>First Name: 
+                                                    <h:inputText value="#{accountReq.firstName}" required="true" /></td>
+					</tr>
+                                    <tr>
+                                        <td>Last Name:
+                                            <h:inputText value="#{accountReq.lastName}" required="true" /></td>
+                                    </tr>
+					<tr>
+						<td>Mobile: 
+                                                    <h:inputText value="#{accountReq.mobileNumber}" required="true" /></td>
+					</tr>
+                                    
+				</table>
+                                        <h:commandButton value="Submit" action="#{accountReq.createUser()}" />
+                              
+			</div>
+                        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Home
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="contentWrap" class="wrap">
+                    <h:form>
+                    <div class="indexMainBlock">
+			<div class="indexBlock">
+                            <img src="images/deathly_hollows_1.jpg" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="1" />
+					<div class="caption">
+						<h3>Harry Potter and the Deathly Hallows</h3>
+						<h4>J. K. Rowling</h4>
+						<p>Harry has finally come of age, and finally started on his final journey to defeat
+								Voldemort for good. The Durselys are forced to go into hiding so that Voldemort’s 
+								Death Eaters will not torture them for information, and Harry sets off with Ron and 
+								Hermione on a difficult quest to find and destroy the last of Voldemort’s Horcruxes. 
+								Only once those have been destroyed, Harry knows, can Voldemort truly be killed...</p>
+							 
+						<div class="indexRating"><span class="thumbsUp"></span><p>78</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/featured_index.jpg" /></a>
+                        
+		</div>
+		<div class="indexMainBlock">
+			<div class="indexBlock">
+				<img src="images/hobbit_1.jpg" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="1" />
+					<div class="caption">
+						<h3>The Hobbit</h3>
+						<h4>J. R. R. Tolkien</h4>
+						<p>Bilbo Baggins lives a quiet, peaceful life in his comfortable hole at Bag End. 
+							Bilbo lives in a hole because he is a hobbit—one of a race of small, plump people 
+							about half the size of humans, with furry toes and a great love of good food and 
+							drink. Bilbo is quite content at Bag End, near...</p>
+							
+						<div class="indexRating"><span class="thumbsUp"></span><p>4</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/newest_index.jpg" /></a>
+		</div>
+		<div class="indexMainBlock">
+			<div class="indexBlock">
+				<img src="images/alphabet_of_manliness_1.jpg" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="1" />
+					<div class="caption">
+						<h3>The Alphabet of Manliness</h3>
+						<h4>Maddox</h4>
+						<p>Namely, the Alphabet of Manliness is a sort of advice book for men, split up into 
+							chapter by letters of the alphabet. For example, A is for Ass-Kicking, B is for 
+							Boners, and so on and so forth. It's a bit different from the way his site is 
+							organized, and you get the idea that this was the publisher's idea...</p>
+							
+						<div class="indexRating"><span class="thumbsUp"></span><p>278</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/rated_index.jpg" /></a>
+		</div>
+		<div>
+                    <h2>Newest eBooks</h2>
+                    <hr />
+                    <ul class="indexBooksList">
+                        <c:forEach var="row" items="#{viewReq.set1}">
+                            <h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                <f:param name="bookId" value="#{row.itemId}" />
+                                <li>
+                                    <h:graphicImage url="#{row.itemImage}" /><br />
+                                    <h:outputText value="#{row.itemName}" />
+                                </li>
+                            </h:commandLink>
+                        </c:forEach>
+                    </ul>
+			<h2>Newest Audiobooks</h2>
+			<hr />
+			<ul class="indexBooksList">
+                            <c:forEach var="row" items="#{viewReq.set2}">
+				<h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                    <f:param name="bookId" value="#{row.itemId}" />
+                                    <li>
+                                        <h:graphicImage url="#{row.itemImage}" /><br />
+                                        <h:outputText value="#{row.itemName}" />
+                                    </li>
+					<input class="sample" type="button" onclick="" />
+				</h:commandLink>
+                                </c:forEach>
+			</ul>
+			<h2>Newest Music</h2>
+			<hr />
+			<ul class="indexBooksList">
+				<c:forEach var="row" items="#{viewReq.set3}">
+				<h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                    <f:param name="bookId" value="#{row.itemId}" />
+                                    <li>
+                                        <h:graphicImage url="#{row.itemImage}" /><br />
+                                        <h:outputText value="#{row.itemName}" />
+                                    </li>
+					<input class="sample" type="button" onclick="" />
+				</h:commandLink>
+                                </c:forEach>
+			</ul>
+		</div>	
+                        </h:form>
+	</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

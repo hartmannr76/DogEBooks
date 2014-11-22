@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div id="header">
+				<div id="welcome">&nbsp;Generate Reports</div><div id="logout"><a href="logout.html"><img src="images/logout.jpg" alt="Logout" border="none" /></a></div>
+			</div><br />
+			<div id="mainContent">
+				<center><a href="reported.html"><input type="button" value="Downloaded eBooks Popularity" /></a> - <a href="reported.html"><input type="button" value="Out Of Stock eBooks" /></a> - <a href="reported.html"><input type="button" value="eBooks Rating Report" /></a></center>
+			</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

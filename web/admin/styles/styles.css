@@ -1,0 +1,77 @@
+html {margin: 0%; padding: 0%; height: 100%;}
+body {margin:0%; padding:0%; height:100%;  background-image: url('../images/contentPattern.jpg'); background-repeat: repeat;} 
+
+table {border-collapse: collapse; border: 1px solid #666666; font: normal 11px verdana, arial, helvetica, sans-serif; color: #363636; background: #f6f6f6; text-align:left;}
+caption {text-align: center; font: bold 16px arial, helvetica, sans-serif; background: transparent; padding:6px 4px 8px 0px; color: #CC00FF; text-transform: uppercase;}
+thead, tfoot {background:url(bg1.png) repeat-x; text-align:left; height:30px;}
+thead th, tfoot th {padding:5px;}
+table a {color: #333333; text-decoration:none; font-weight: bold;}
+table a:hover {text-decoration:underline;}
+tr.odd {background: #f1f1f1;}
+tbody th, tbody td {padding:5px;}
+
+#logo {padding-top: 5%;}
+#container{height: 100%;}
+#leftNav {position: absolute; z-index: 2; background-image: url('../images/leftNavPattern.jpg'); background-repeat:repeat; width: 20%; min-height: 100%; height: 100%; font-weight: bold; text-align: center;}
+#header {margin-top: -1.35%; padding-left: 0%; background-color: #efefef; border: 1px solid; width: 100%;}
+#welcome {padding-top: 1%; font-size: 18pt;}
+#logout {padding-left: 88%; margin-top: -3.7%;}
+#content {position: absolute; padding-left: 25%; padding-top: 1%; z-index: 1; height: 98%; width: 70%; text-align: center;}
+#mainContent {background-color: #FFFFFF; border: 1px solid; text-align: justify;}
+#dashboard {font-size: 16pt;}
+/*#adminControls {background-color: #f0f0f0;}
+#staffConsole {background-color: #f0f0f0;}
+*/
+a.leftNavLink:link{color: #FFFFFF; font-style: bold; text-decoration: none; font-family: "Verdana", Verdana, sans-serif;}
+a.leftNavLink:visited{color: #FFFFFF; font-style: bold; text-decoration: none; font-family: "Verdana", Verdana, sans-serif;}
+a.leftNavLink:hover{color: #466085; font-style: bold; text-decoration: none; font-family: "Verdana", Verdana, sans-serif;}
+
+#largeLogin
+{
+width:300px;
+border:3px solid #fff;
+margin: 50px auto 0;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+padding:1em;
+}
+
+#largeLogin label
+{
+margin-top:0;
+font-family: arial black, arial;
+text-align:center;
+text-shadow: 0 1px 0 #fff;
+text-transform:none;
+}
+
+#largeLogin input[type=text], #largeLogin input[type=password]
+{
+display:block;
+width:280px;
+padding: 5px;
+-moz-border-radius:1px;
+-webkit-border-radius:1px;
+}
+
+#largeLogin input[type=submit]
+{
+border:none;
+padding: 6px;
+margin-right:10px;
+width:140px;
+font-size:12px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+background:#348075;
+color:white;
+box-shadow:0 1px 0 white;
+-moz-box-shadow:0 1px 0 white;
+-webkit-box-shadow:0 1px 0 white;
+}
+
+#largeLogin input[type=submit]:hover
+{
+background:#287368;
+cursor:pointer;
+}

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div id="header">
+				<div id="welcome">&nbsp;Messages</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                                    </div>
+			</div><br />
+			<div id="mainContent">
+				
+				<center><input type="button" value="Create Message" name="create" onClick="return OnAdd();" /> | <input type="button" value="Delete Message" name="delete" onClick="return OnDelete();" /></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>Message ID</td>
+						<td> | From</td>
+						<td> | Date Received</td>
+						<td> | Subject</td>
+						<td> | Priority</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1" /></td>
+						<td>1</td>
+						<td>Jonathan DeAgro</td>
+						<td>2-19-2012</td>
+						<td><a href="messageViewed.html">Routine System Maitenance</a></td>
+						<td>Low</td>
+					</tr>
+				</table>
+                               
+			</div>
+                         </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

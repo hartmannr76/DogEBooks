@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div id="header">
+				<div id="welcome">&nbsp;Manage Library Staff</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<div id="mainContent">
+				<center><input type="button" value="Add Staff" name="add" onClick="return OnAdd();" /> | <input type="button" value="Edit Staff" name="edit" onClick="return OnEdit();" /> | <input type="button" value="Delete Staff" name="delete" onClick="return OnDelete();" /></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>Permission</td>
+						<td> | Username</td>
+						<td> | E-mail</td>
+					</tr>
+                                    <ui:repeat value="#{adminReq.listOfStaff}" var="row">
+					<tr>
+                                            <td><h:selectBooleanCheckbox value="#{adminReq.itemsToDelete[row]}" /></td>
+                                            <td><h:outputText value="#{row.permissionsLevel}" /></td>
+                                            <td><h:outputText value="#{row.userName}" /></td>
+                                            <td><h:outputText value="#{row.userEmail}" /></td>
+					</tr>
+                                        </ui:repeat>
+					
+				</table>
+                                
+			</div>
+                        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

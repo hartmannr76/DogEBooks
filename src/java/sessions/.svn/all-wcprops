@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/src/java/sessions
+END
+ItemEntityFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/ItemEntityFacade.java
+END
+ItemFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/ItemFacade.java
+END
+UserSession.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/src/java/sessions/UserSession.java
+END
+EbookEntityFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/EbookEntityFacade.java
+END
+EbookFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/EbookFacade.java
+END
+StaffaccountFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/StaffaccountFacade.java
+END
+StaffmessagehistoryFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/StaffmessagehistoryFacade.java
+END
+NotificationFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/NotificationFacade.java
+END
+NotificationhistoryFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/NotificationhistoryFacade.java
+END
+StaffmessageFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/StaffmessageFacade.java
+END
+MusicFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/MusicFacade.java
+END
+UseraccountEntityFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/UseraccountEntityFacade.java
+END
+WishlistFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/WishlistFacade.java
+END
+AbstractFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/cse308-dogwood/!svn/ver/106/Assignments/build/src/java/sessions/AbstractFacade.java
+END
+UseraccountFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/UseraccountFacade.java
+END
+AudiobookFacade.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/cse308-dogwood/!svn/ver/107/Assignments/build/src/java/sessions/AudiobookFacade.java
+END

@@ -1,0 +1,132 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package user;
+
+import item.Item;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ *
+ * @author Ricky
+ */
+public class User {
+    
+    private int idUserLibraryCode = 0;
+    private String username;
+    private String password;
+    private String userEmail = "";
+    private String firstName;
+    private String lastName;
+    private String userMobileNumber = "";
+    private String userProfileImage = "";
+    private HashMap<String, UserWishlist> wishlists;
+
+    public User(int idUserLibraryCode, String username, String password, String firstName, String lastName, String userEmail) {
+        this.idUserLibraryCode = idUserLibraryCode;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userEmail = userEmail;
+        this.wishlists = new HashMap<String, UserWishlist>();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public Object[] getWishlists() {
+        return wishlists.keySet().toArray();
+    }
+    
+    public void addWishlist(String name, UserWishlist uw) {
+        wishlists.put(name, uw);
+    }
+    
+    public void removeWishlist(String name) {
+        wishlists.remove(name);
+    }
+    
+    public List<Item> getSpecificWishlist(String key) {
+        return wishlists.get(key).wishlistItems;
+    }
+    
+    public void addItemIntoWishlist(String listName, Item item) {
+        wishlists.get(listName).addItemToWishlist(item);
+    }
+    
+    public void removeItemFromWishlist(String listName, Item item) {
+        wishlists.get(listName).removeItemFromWishlist(item);
+    }
+
+    public int getIdUserLibraryCode() {
+        return idUserLibraryCode;
+    }
+
+    public void setIdUserLibraryCode(int idUserLibraryCode) {
+        this.idUserLibraryCode = idUserLibraryCode;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserMobileNumber() {
+        return userMobileNumber;
+    }
+
+    public void setUserMobileNumber(String userMobileNumber) {
+        this.userMobileNumber = userMobileNumber;
+    }
+
+    public String getUserProfileImage() {
+        return userProfileImage;
+    }
+
+    public void setUserProfileImage(String userProfileImage) {
+        this.userProfileImage = userProfileImage;
+    }
+
+    /**
+     * @param wishlists the wishlists to set
+     */
+    public void setWishlists(HashMap<String, UserWishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
+    
+}

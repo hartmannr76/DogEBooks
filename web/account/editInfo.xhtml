@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Account Register
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="contentForm">
+                                        <h:form>
+                                                <label><strong>Requested Username</strong></label><br />
+                                                <h:inputText value="#{viewReq.userView.username}" required="true" /><br /><br />
+                                                <label><strong>Email</strong></label><br />
+                                                <h:inputText id="email" value="#{viewReq.userView.userEmail}" required="true">
+                                                    <f:validator validatorId="validator.EmailValidator" />
+                                                </h:inputText><h:message for="email" style="color:red" /><br /><br />
+                                                <label><strong>First Name</strong></label><br />
+						<h:inputText value="#{viewReq.userView.firstName}" required="true" /><br /><br />
+                                                <label><strong>Last Name</strong></label><br />
+						<h:inputText value="#{viewReq.userView.lastName}" required="true" /><br /><br />
+                                                <label><strong>Mobile Number</strong></label><br />
+                                                <h:inputText value="#{viewReq.userView.userMobileNumber}" required="true" /><br /><br />
+                                                <h:commandButton value="Submit" action="#{viewReq.updateUser()}" />
+					</h:form>
+				</div>
+			</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

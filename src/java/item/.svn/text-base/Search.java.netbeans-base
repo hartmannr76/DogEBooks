@@ -1,0 +1,147 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package item;
+
+import java.util.*;
+
+/**
+ * @author
+ * Piotr
+ */
+public class Search 
+{
+    
+    private  List<Item> listOfItems; 
+    
+    public Search(List<Item> initListOfItems)
+    {
+        listOfItems = initListOfItems;
+        
+    }
+    
+    /*
+     * Takes in an ArrayList of Strings for which search queries will be performed
+     */
+    public List<Item> performSimpleSearch(ArrayList<String> initSearchQuery)
+    {
+        List<Item> itemsToBeReturned = new ArrayList<Item>();
+        
+        
+        for(int i = 0; i < initSearchQuery.size(); i++)
+        {   
+        String searchQuery = initSearchQuery.get(i);
+        itemsToBeReturned.addAll(getItemsByName(searchQuery));
+        itemsToBeReturned.addAll(getItemsByAuthor(searchQuery));
+        }
+        
+        itemsToBeReturned = organizeSearchResults(itemsToBeReturned);
+        
+        return itemsToBeReturned;   
+    }
+    
+    
+    public List<Item> getItemsByName(String initItemName)
+    {
+        List<Item> itemsToBeReturned = new ArrayList<Item>();
+        String itemNameLowerCase = initItemName.toLowerCase();
+        
+        
+        for(int i = 0; i < listOfItems.size(); i++)
+        {
+            String itemBeingLookedAtName = listOfItems.get(i).getItemName().toLowerCase();
+            
+            if(itemBeingLookedAtName.contains(itemNameLowerCase))
+                    {
+                        itemsToBeReturned.add(listOfItems.get(i));
+                    }
+        }
+           
+        return itemsToBeReturned;
+            
+    }
+   
+        public List<Item> getItemsByAuthor(String initAuthor)
+    {
+        List<Item> itemsToBeReturned = new ArrayList<Item>();
+        String authorLowerCase = initAuthor.toLowerCase();
+        
+        for(int i = 0; i < listOfItems.size(); i++)
+        {
+            String authorBeingLookedAtName = listOfItems.get(i).getAuthor().toLowerCase();
+            
+            if(authorBeingLookedAtName.contains(authorLowerCase))
+                    {
+                        itemsToBeReturned.add(listOfItems.get(i));
+                    }
+        }
+           
+        return itemsToBeReturned;
+            
+    }
+    
+      public List<Item> getItemsByType(int initType)
+    {
+        List<Item> itemsToBeReturned = new ArrayList<Item>();
+        
+        for(int i = 0; i < listOfItems.size(); i++)
+        {
+            if(listOfItems.get(i).getItemType() == initType)
+                    {
+                        itemsToBeReturned.add(listOfItems.get(i));
+                    }
+        }
+           
+        return itemsToBeReturned;
+            
+    }   
+       
+      //used to organize the search results based on relevancy and remove duplicates, 
+      //duplications of an item represent several matches for the item within the search 
+      //(ie. item with most duplicates matches search query greatest)
+      public List<Item> organizeSearchResults(List<Item> initItems)
+      {
+          List <SearchItem> listOfSearchItems = new ArrayList<SearchItem>();
+          
+          for(int i = 0; i < listOfItems.size(); i++)
+        {
+            Item currentItem = listOfItems.get(i);
+            int frequencyOfItem = Collections.frequency(listOfItems, currentItem);
+            SearchItem currentItemAsSearchItem = new SearchItem(currentItem, frequencyOfItem);
+            removeAllInstancesOfItemFromList(currentItem);
+            listOfSearchItems.add(currentItemAsSearchItem);
+            
+        }
+          //sorting the SearchItem List based on frequency
+          Collections.sort(listOfSearchItems);
+          recreateListOfItemsFromSearchItems(listOfSearchItems);
+          
+          return listOfItems;
+      }
+      
+      
+      public void removeAllInstancesOfItemFromList(Item initItem)
+      {
+          for(int i = 0; i < listOfItems.size(); i++)
+          {
+              if(listOfItems.get(i).equals(initItem))
+                      {
+                          listOfItems.remove(i);
+                      }
+                  
+          }
+      }
+      
+      public void recreateListOfItemsFromSearchItems(List<SearchItem> initSearchItems)
+      {
+          for(int i = 0; i < initSearchItems.size(); i++)
+          {
+              Item item = initSearchItems.get(i).getItem();
+              listOfItems.add(item);
+          }
+          
+          
+      }
+    
+}

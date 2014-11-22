@@ -1,0 +1,27 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package item;
+
+/**
+ *
+ * @author Ricky
+ */
+public class Music extends Item {
+    int edition;
+    int ISBN;
+    int numberOfParts;
+    String sampleOfBookDownloadURL;
+    boolean burnToCD;
+    boolean transferToDevice;
+    boolean transferToAppleDevice;
+    boolean publicPerformance;
+    boolean fileSharing;
+    boolean peerToPeerUsage;
+    String digitalRights;
+    
+    public Music(String bookName, int bookId, String bookImg, int itemType, String author) {
+        super(bookName, bookId, bookImg, itemType, author);
+    }
+}

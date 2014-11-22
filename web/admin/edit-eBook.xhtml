@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form enctype="multipart/form-data">
+                <div id="header">
+				<div id="welcome">&nbsp;Manage eBooks - Edit eBook</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<div id="mainContent">
+                            
+				<table>
+					<tr>
+						<td>Book ISBN:
+                                                    <h:inputText value="#{adminReq.editingItem.ISBN}" /></td>
+					</tr>
+					<tr>
+						<td>Title: 
+                                                    <h:inputText value="#{adminReq.editingItem.itemName}" /></td>
+					</tr>
+					<tr>
+						<td>Author: 
+                                                    <h:inputText value="#{adminReq.editingItem.author}" /></td>
+					</tr>
+					<tr>
+						<td>Category: 
+                                                <h:selectOneMenu value="#{adminReq.itemCategory}">
+                                                    <f:selectItems value="#{adminReq.itemCategories}" />
+                                                </h:selectOneMenu></td>
+					</tr>
+                                        <tr>
+						<td>Publisher: 
+                                                    <h:inputText value="#{adminReq.editingItem.publisher}" /></td>
+					</tr>
+                                    <tr>
+                                        <td>Release Date:
+                                            </td>
+                                    </tr>
+					<tr>
+						<td>Description: 
+                                                    <h:inputTextarea value="#{adminReq.editingItem.description}" /></td>
+					</tr>
+                                    <tr>
+						<td>Copies Offered: 
+                                                    <h:inputText value="#{adminReq.editingItem.libraryCopies}" /></td>
+					</tr>
+                                        <tr>
+						<td>Image Location: 
+                                                    <t:inputFileUpload value="#{adminReq.itemImageLocation}" accept="image/"
+                                                                       storage="file" required="false"/><br />
+                                                (If empty, will use previous image)</td>
+					</tr>
+				</table>
+                                <h:commandButton value="Edit" action="#{adminReq.editEBook()}" />
+                             
+			</div>
+                         </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

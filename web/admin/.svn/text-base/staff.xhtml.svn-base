@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div id="header">
+				<div id="welcome">&nbsp;Manage Library Staff</div><div id="logout"><a href="logout.html"><img src="images/logout.jpg" alt="Logout" border="none" /></a></div>
+			</div><br />
+			<div id="mainContent">
+				<form id="1" name="crud" method="post">
+				<center><input type="button" value="Add Staff" name="add" onClick="return OnAdd();" /> | <input type="button" value="Edit Staff" name="edit" onClick="return OnEdit();" /> | <input type="button" value="Delete Staff" name="delete" onClick="return OnDelete();" /></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>User ID</td>
+						<td> | Username</td>
+						<td> | Password</td>
+						<td> | E-mail</td>
+						<td> | First Name</td>
+						<td> | Last Name </td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="2412" /></td>
+						<td>2412</td>
+						<td>jdeagro</td>
+						<td>********</td>
+						<td>jondeagro@yahoo.com</td>
+						<td>Jonathan</td>
+						<td>DeAgro</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1791" /></td>
+						<td>1791</td>
+						<td>pkasperek</td>
+						<td>********</td>
+						<td>pkasperek@gmail.com</td>
+						<td>Piotr</td>
+						<td>Kasperek</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1337" /></td>
+						<td>1337</td>
+						<td>rhartmann</td>
+						<td>********</td>
+						<td>rhartmann@gmail.com</td>
+						<td>Richard</td>
+						<td>Hartmann</td>
+					</tr>
+				</table>
+                                </form>
+			</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

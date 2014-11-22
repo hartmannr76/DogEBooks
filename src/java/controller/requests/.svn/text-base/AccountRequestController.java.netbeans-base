@@ -1,0 +1,165 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller.requests;
+
+import controller.managers.UserManager;
+import item.Item;
+import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import sessions.UserSession;
+import user.User;
+import user.UserWishlist;
+
+/**
+ *
+ * @author Ricky
+ */
+@ManagedBean (name = "accountReq")
+@RequestScoped
+public class AccountRequestController implements Serializable {
+
+    
+    @EJB
+    UserSession us;
+    @EJB
+    UserManager um;
+    
+    int barCode;
+    String username;
+    String password;
+    String wishlistName;
+    String firstName;
+    String lastName;
+    String email;
+    int mobileNumber;
+    
+    /**
+     * Creates a new instance of AccountRequestController
+     */
+    public AccountRequestController() {
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getWishlistName() {
+        return wishlistName;
+    }
+    
+    public void setWishlistName(String wishlistName) {
+        this.wishlistName = wishlistName;
+    }
+
+    public int getBarCode() {
+        return barCode;
+    }
+
+    public void setBarCode(int barCode) {
+        this.barCode = barCode;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(int mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+        
+    public String doLogin() {
+        User u = um.doesUserExist(username, password);
+        if(u != null) {
+            //um.getUsersWishlist(u.getIdUserLibraryCode());
+            us.setUser(u);
+            return "";
+        }
+        else
+            return "/account/login.xhtml?faces-redirect=true";
+    }
+    
+    public List<Item> getCurrentCart() {
+        return us.getObjCart();
+    }
+    
+    public User getCurrentUser() {
+        return us.getUser();
+    }
+    
+    public String logout() {
+        us.setUser(null);
+        return "";
+    }
+    
+    public String login() {
+        if(us.getUser() != null)
+            return us.getUser().getFirstName();
+        else return null;
+    }
+    
+    public void addWishlist() {
+        System.out.print(wishlistName);
+        us.getUser().addWishlist(wishlistName, new UserWishlist());
+    }
+    
+    public String createUser() {
+        User u = new User(barCode, username, password, firstName, lastName, email);
+        u.setUserMobileNumber(Integer.toString(mobileNumber));
+        um.createUser(u);        
+        
+        return "";
+    }
+    
+    public void checkout() {
+        
+    }
+    
+    public String viewAccountMain() {
+        return "/account/view.xhtml?faces-redirect=true";
+    }
+    
+    public String viewRegister() {
+        return "/account/register.xhtml?faces-redirect=true";
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div id="header">
+				<div id="welcome">&nbsp;Manage eBook Members</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<div id="mainContent">
+				
+				<center><input type="button" value="Add Member" name="add" onClick="location.href='add-member.xhtml';" /> | <input type="button" value="Delete Member" name="delete" onClick="return OnDelete();" /></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>Library ID</td>
+						<td> | Username</td>
+						<td> | E-mail</td>
+						<td> | First Name</td>
+						<td> | Last Name </td>
+					</tr>
+                                    <ui:repeat value="#{adminReq.listOfUsers}" var="row">
+					<tr>
+                                            <td><h:selectBooleanCheckbox value="#{adminReq.itemsToDelete[row]}" /></td>
+                                            <td><h:outputText value="#{row.idUserLibraryCode}" /></td>
+                                            <td><h:outputText value="#{row.username}" /></td>
+                                            <td><h:outputText value="#{row.userEmail}" /></td>
+                                            <td><h:outputText value="#{row.firstName}" /></td>
+                                            <td><h:outputText value="#{row.lastName}" /></td>
+					</tr>
+                                        </ui:repeat>
+					
+				</table>
+                              
+			</div>
+                        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

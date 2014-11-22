@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./templates/adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                <div id="header">
+				<div id="welcome">&nbsp;Customer Service - Inquirries</div><div id="logout">
+                        <h:commandLink action="#{accountReq.logoutStaff()}">
+                            <img src="images/logout.jpg" alt="Logout" border="none" />
+                        </h:commandLink>
+                    </div>
+			</div><br />
+			<div id="mainContent">
+				<center><a href="createMessageCS.html"><input type="button" value="Create Message" name="create" /></a> | <a href="deleteMessageCS.html"><input type="button" value="Delete Message" name="delete" /></a></center>
+				<table align="center">
+					<tr>
+						<td><input type="checkbox" name="selectAll" /></td>
+						<td>Message ID</td>
+						<td> | From</td>
+						<td> | Date Received</td>
+						<td> | Subject</td>
+						<td> | Priority</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="1" /></td>
+						<td>1</td>
+						<td>Michael Jordon</td>
+						<td>2-15-2012</td>
+						<td><a href="messageViewedCS.html">Book Suggestion</a></td>
+						<td>Low</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" name="2" /></td>
+						<td>2</td>
+						<td>Michael Bolton</td>
+						<td>2-05-2012</td>
+						<td><a href="messageViewedCS.html">Password Reset</a></td>
+						<td>High</td>
+					</tr>
+				</table>
+			</div>
+                        </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

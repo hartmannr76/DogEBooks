@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+        <ui:composition template="./templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Home
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="contentWrap" class="wrap">
+                    <h:form>
+                    <div class="indexMainBlock">
+			<div class="indexBlock">
+                            <h:graphicImage url="#{viewReq.index1.bigBookImage}" width="310px" height="467px" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="#{viewReq.index1.bookId}" />
+					<div class="caption">
+                                            <h3><h:outputText value="#{viewReq.index1.itemName}" /></h3>
+                                            <h4><h:outputText value="#{viewReq.index1.author}" /></h4>
+                                            <p><h:outputText value="#{viewReq.index1.shortDescription}" /></p>
+							 
+						<div class="indexRating"><span class="thumbsUp"></span><p>44</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/featured_index.jpg" /></a>
+                        
+		</div>
+		<div class="indexMainBlock">
+			<div class="indexBlock">
+				<h:graphicImage url="#{viewReq.index2.bigBookImage}" width="310px" height="467px" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="#{viewReq.index2.bookId}" />
+					<div class="caption">
+                                            <h3><h:outputText value="#{viewReq.index2.itemName}" /></h3>
+                                            <h4><h:outputText value="#{viewReq.index2.author}" /></h4>
+                                            <p><h:outputText value="#{viewReq.index2.shortDescription}" /></p>
+							 
+						<div class="indexRating"><span class="thumbsUp"></span><p>78</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/newest_index.jpg" /></a>
+		</div>
+		<div class="indexMainBlock">
+			<div class="indexBlock">
+				<h:graphicImage url="#{viewReq.index3.bigBookImage}" width="310px" height="467px" /><h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook"><f:param name="bookId" value="#{viewReq.index3.bookId}" />
+					<div class="caption">
+                                            <h3><h:outputText value="#{viewReq.index3.itemName}" /></h3>
+                                            <h4><h:outputText value="#{viewReq.index3.author}" /></h4>
+                                            <p><h:outputText value="#{viewReq.index3.shortDescription}" /></p>
+							 
+						<div class="indexRating"><span class="thumbsUp"></span><p>5</p></div>
+					</div>
+				</h:commandLink>
+			</div>
+			<a href="categories.html" class="indexItem"><img src="images/rated_index.jpg" /></a>
+		</div>
+		<div>
+                    <h2>Newest eBooks</h2>
+                    <hr />
+                    <ul class="indexBooksList">
+                        <c:forEach var="row" items="#{viewReq.set1}">
+                            <h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                <f:param name="bookId" value="#{row.itemId}" />
+                                <li>
+                                    <h:graphicImage url="#{row.itemImage}" /><br />
+                                    <h:outputText value="#{row.itemName}" />
+                                </li>
+                            </h:commandLink>
+                        </c:forEach>
+                    </ul>
+			<h2>Newest Audiobooks</h2>
+			<hr />
+			<ul class="indexBooksList">
+                            <c:forEach var="row" items="#{viewReq.set2}">
+                                <li>
+				<h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                    <f:param name="bookId" value="#{row.itemId}" />
+                                    
+                                        <h:graphicImage url="#{row.itemImage}" /><br />
+                                        <h:outputText value="#{row.itemName}" />
+                                    
+                                    
+				</h:commandLink>
+                                    <input class="sample" type="button" onclick="location.href='#{row.excerptOfBookDownloadURL}'" />
+                                    </li>
+                                </c:forEach>
+			</ul>
+			<h2>Newest Music</h2>
+			<hr />
+			<ul class="indexBooksList">
+				<c:forEach var="row" items="#{viewReq.set3}">
+                                    <li>
+				<h:commandLink action="#{viewReq.viewBook()}" class="indexMainBook">
+                                    <f:param name="bookId" value="#{row.itemId}" />
+                                    
+                                        <h:graphicImage url="#{row.itemImage}" /><br />
+                                        <h:outputText value="#{row.itemName}" />
+                                    
+					
+				</h:commandLink>
+                                        <input class="sample" type="button" onclick="" />
+                                        </li>
+                                </c:forEach>
+			</ul>
+		</div>	
+                        </h:form>
+	</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

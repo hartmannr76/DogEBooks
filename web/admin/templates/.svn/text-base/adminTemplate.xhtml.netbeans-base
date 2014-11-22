@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsf/core">
+    <ui:param name="root" value="#{request.contextPath}" />
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<meta name="description" content="Dog-eBooks Administrator Control Panel" /> 
+	<meta name="keywords" content="" /> 
+	<link rel="stylesheet" href="styles/styles.css" type="text/css" media="screen" charset="utf-8" />
+	<title>Welcome Dog-eBooks Admin!</title>
+    </h:head>
+
+    <h:body>
+        <h:panelGroup id="container" layout="block">
+        <h:panelGroup layout="block" rendered="#{accountReq.login() != null}">
+            <div id="leftNav">
+                <div id="logo"><img src="images/logo.jpg" alt="Dog-eBooks Logo" /><br /><br /></div>
+                <h:form>
+			<div id="dashboard">
+                            <h:commandLink action="#{adminReq.viewDashboard()}" class="leftNavLink">Dashboard</h:commandLink><br /><br />
+			</div>
+			<div id="adminControls"><img src="images/adminControlsTab.png" /><br />
+                            <h:commandLink action="#{adminReq.viewStaff()}" class="leftNavLink">Manage Library Staff</h:commandLink><br />
+				<h:commandLink action="#{adminReq.viewReports()}" class="leftNavLink">Generate Reports</h:commandLink><br /><br />
+			</div>
+			<div id="staffConsole"><img src="images/staffControlsTab.png" /><br />
+				<h:commandLink action="#{adminReq.viewMessages()}" class="leftNavLink">Messages</h:commandLink><br />
+                                <h:commandLink action="#{adminReq.viewCSInquiries()}" class="leftNavLink">Customer Service</h:commandLink><br />
+				<h:commandLink action="#{adminReq.vieweBooks()}" class="leftNavLink">eBooks</h:commandLink><br />
+				<h:commandLink action="#{adminReq.viewAudiobooks()}" class="leftNavLink">Audio Books</h:commandLink><br />
+                                <h:commandLink action="#{adminReq.viewMusic()}" class="leftNavLink">Music</h:commandLink><br />
+				<h:commandLink action="#{adminReq.viewMembers()}" class="leftNavLink">eBook Members</h:commandLink><br /><br />
+			</div>
+                    </h:form>
+            </div>
+            <div id="content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </h:panelGroup>
+            <h:panelGroup layout="block"  id="largeLogin" rendered="#{accountReq.login() == null}">
+            <h:form>
+                            <label for="name">Username:</label>
+                            <h:inputText value="#{accountReq.username}"></h:inputText><br />
+                            <label for="password">Password:</label>
+                            <h:inputSecret value="#{accountReq.password}"></h:inputSecret><br />
+                            <h:commandButton value="Login" action="#{accountReq.doLogin()}">
+                            </h:commandButton><br />
+                    </h:form>
+        </h:panelGroup>
+        </h:panelGroup>
+    </h:body>
+
+</html>

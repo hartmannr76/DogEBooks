@@ -1,0 +1,663 @@
+* {
+    font-family:"Trebuchet MS";
+}
+
+h2 {
+	text-align:center;
+}
+
+html, body {
+	height:100%;
+	margin:0;
+	padding:0;
+}
+
+.wrap {
+	width:960px;
+	padding:0px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#container {
+    position:absolute;
+    width:100%;
+	min-height:100%;
+	background-color:#F0F0F0;
+}
+
+header {
+	height:50px;
+	background:#9a0000;
+	position: fixed;
+	top:0;
+	z-index:10;
+	width:100%;
+}
+
+#headerTop {
+    position:relative;
+}
+
+#content {
+	background-color:#F0F0F0;
+	position:relative;
+    margin-top:50px;
+}
+
+#contentWrap {
+	padding: 15px 0;
+	position:relative;
+	background-color:#fff;
+	margin-bottom: 100px;
+	min-height:400px;
+}
+
+footer {
+	background:#9a0000;
+	height:100px;
+	width:100%;
+	position:absolute;
+	bottom:0;
+}
+
+.indexBlock, .indexMainBlock {
+    width: 310px;
+    display:inline-block;
+    position:relative;
+    height:467px;
+    margin-right:3px;
+    margin-left:3px;
+}
+
+.indexBlock {
+	margin:0;
+}
+
+.indexBlock .caption a {
+    text-decoration:none;
+    color:#0cc7dd;
+    font-size:16px; 
+    padding:5px;
+    display:block;
+}
+
+.indexBlock a {
+	text-decoration:none;
+	color:#fff;
+}
+
+.caption {
+	width:310px;
+	height:467px;
+	display:none;
+	background:#000;
+	/* fix it at the bottom */
+    position:absolute;
+    left:0;
+    top:0;
+    /* opacity setting */
+    filter:alpha(opacity=80);    /* ie  */
+    -moz-opacity:0.8;    /* old mozilla browser like netscape  */
+    -khtml-opacity: 0.8;    /* for really really old safari */ 
+    opacity: 0.8;    /* css standard, currently it works in most modern browsers like firefox,  */ 
+}
+
+.caption h3, .caption h4, .caption p {
+	font-family:"Times New Roman", Times, serif;
+	text-align:justify;
+	margin: 10px 30px;
+}
+
+.caption h3, .caption h4 {
+	text-align:center;
+}
+
+.mainNav {
+    display:inline-block;
+    position:absolute;
+    top:10px;
+    left:130px;
+    z-index:99;
+}
+
+.mainNav ul{
+	margin:0;
+	padding:0;
+}
+
+.mainNav li, .mainNav a{
+	background: url('../images/buttons_ss.jpg') no-repeat left top;
+	height:30px;
+	width:30px;
+	display:inline-block;
+	border:#9a0000 1px solid;
+	position:relative;
+}
+
+.mainNav li.notify {
+	background-position: 0px 0px;
+}
+
+.mainNav li.cart {
+	background-position: -30px 0px;
+}
+
+.mainNav li.wish {
+	background-position: -60px 0px;
+}
+
+.mainNav li.browse {
+	background-position: -90px 0px;
+}
+
+.mainNav a.faq {
+	background-position: -120px 0px;
+}
+
+.mainNav li:hover{
+	cursor:pointer;
+}
+
+.mainNav li.notify:hover {
+	background-position: 0px -30px;
+}
+
+.mainNav li.cart:hover {
+	background-position: -30px -30px;
+}
+
+.mainNav li.wish:hover {
+	background-position: -60px -30px;
+}
+
+.mainNav li.browse:hover {
+	background-position: -90px -30px;
+}
+
+.mainNav a.faq:hover {
+	background-position: -120px -30px;
+}
+
+.mainNav li.select {
+	border:#000000 1px solid;
+	border-bottom:#fff 1px solid;
+	margin-top:-1px;
+	margin-bottom:-1px;
+}
+
+.mainNav li.notify.select {
+	background-position: 0px -60px;
+}
+
+.mainNav li.cart.select {
+	background-position: -30px -60px;
+}
+
+.mainNav li.wish.select {
+	background-position: -60px -60px;
+}
+
+.mainNav li.browse.select {
+	background-position: -90px -60px;
+}
+
+.logo {
+	background:url('../images/logo.jpg') no-repeat left top;
+	height:50px;
+	width:125px;
+	position:absolute;
+}
+
+.logo:hover {
+	background-position: 0px -50px;
+}
+
+.rightNav {
+	display:inline-block;
+    position:absolute;
+    top:15px;
+    right:0;
+}
+
+.rightNav a, .rightNav .logBlock {
+	color:#fff;
+	text-decoration:none;
+	margin: 0 10px;
+	padding: 5px 10px;
+}
+
+.rightNav .logBlock {
+	margin-right:0px;
+}
+
+.rightNav a:hover, .rightNav .logBlock:hover {
+	//color:#d5d5d5;
+	background:#b80000;
+	cursor:pointer;
+}
+
+.rightNav .search {
+	width:250px;
+}
+
+.browseSelection, .wishList, .cartList, .notificationList, .loginBox {
+    position:absolute;
+    top:42px;
+    left:135px;
+    background:#fff;
+    padding:0;
+    border:#000000 1px solid;
+    width:345px;
+    height:50px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;  
+    display:none;  
+}
+
+.browseSelection ul, .wishList ul, .cartList ul, .notificationList ul {
+    list-style:none;
+    padding: 0px 20px 0px 20px;
+}
+
+.notificationList, .wishList, .cartList {
+	width:200px;
+	left:130px;
+	-moz-border-radius: 0px 5px 5px 5px;
+    -webkit-border-radius:   0px 5px 5px 5px;
+    border-radius:  0px 5px 5px 5px;
+    height:auto;
+}
+
+.browseSelection ul li {
+    display:inline-block;
+}
+
+.browseSelection ul a {
+    background:#bbb;
+    padding: 3px 20px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration:none;
+    color:#000;
+    display:inline-block;
+    margin-right:5px;
+}
+
+.browseSelection ul a:last-child {
+    margin-right:0;
+}
+
+.loginBox {
+	width:250px;
+	height: 120px;
+	position:absolute;
+	left:710px;
+}
+
+.loginBox a {
+	font-size:12px;
+}
+
+.indexItem {
+	position: absolute;
+    bottom:0px;
+    height:75px;
+    width:310px;
+    left:0;
+}
+
+.indexItem img {
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+	border-radius: 15px 15px 0px 0px;
+}
+
+.indexMainBlock:last-of-type {
+	margin-right:0px;
+}
+
+.indexBooksList {
+    list-style:none;
+	position:relative;
+	margin-left:-10px;
+}
+
+.indexBooksList a {
+    display:inline-block;
+    width:130px;
+    padding:20px 15px 20px 15px;
+    background:#bbb;
+    margin:5px;
+    text-decoration:none;
+    text-align:center;
+    font-size:10px;
+    color:#000;
+    border: #A0A0A0 3px solid;
+}
+
+.indexBooksList a:hover {
+	background:#b1b1b1;
+}
+
+#footerWrap a {
+	color:#bbb;
+}
+#footerWrap a:hover {
+	color:#b1b1b1;
+}
+
+.indexRating {
+	display: block;
+	position:absolute;
+	width:60px;
+	height:20px;
+	bottom:100px;
+	left:120px;
+	background:#A0A0A0;
+	padding:0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.thumbsUp {
+	position:absolute;
+	left:10px;
+	display:block;
+	width:17px;
+	height:17px;
+	background:url('../images/thumb_up.png');
+}
+
+.indexRating p {
+	position:absolute;
+	bottom:-11px;
+	color:#FFFFFF;
+}
+
+#leftNav, #leftNavAccount {
+    position:absolute;
+    width:220px;
+    display:block;
+    padding-left:0;
+}
+
+#leftNav ul, #leftNavAccount ul {
+	list-style:none;
+	padding-left:20px;
+}
+
+#leftNav {
+    padding-left:10px;
+}
+
+#leftNav ul {
+    padding-left:0;
+}
+
+#leftNav ul li a {
+    text-decoration:none;
+    color:#000;
+}
+
+#leftNavAccount ul a{
+	width:180px;
+	background:#BBBBBB;
+	padding: 5px;
+	border:#000000 1px solid;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+#leftNavAccount ul a {
+	display:list-item;
+	text-decoration:none;
+}
+
+#leftNav ul li ul {
+	display:none;
+}
+
+#leftNav ul li ul li {
+	width:auto;
+	background:none;
+	border:none;
+}
+
+#leftNav ul li:hover, #leftNavAccount ul a:hover {
+	background:#A1A1A1;
+}
+
+#leftNav ul li:hover {
+	cursor:pointer;
+}
+
+#rightContent {
+    width:740px;
+    position:relative;
+    left:220px;
+}
+
+#rightContent h2, p {
+	margin-top:15px;
+	margin-bottom:10px;
+	color:#A0A0A0;
+	text-align: left;
+	margin-left:15px;
+}
+
+#rightContent p {
+	font-size:12px;
+}
+
+#rightContent h2{
+	margin-top:5px;
+}
+
+#rightContent ul {
+	list-style:none;
+	margin-top:10px;
+	padding-left:10px;
+}
+
+#rightContent ul a {
+	text-decoration:none;
+        display:inline-block;
+}
+
+#rightContent ul li {
+	display:inline-block;
+	width:130px;
+	vertical-align:top;
+	padding:20px 10px 20px 10px;
+    background:#bbb;
+    margin:5px;
+    text-decoration:none;
+    text-align:center;
+    font-size:10px;
+    color:#000;
+    border: #A0A0A0 3px solid;
+}
+
+#rightContent ul li:hover 
+{
+	background:#b1b1b1;
+}
+
+#bookDisplay {
+    margin-left:15px;
+    position:relative;
+    min-height:300px;
+}
+
+#bookDisplay img {
+	float:left;
+	display:block;
+}
+
+#bookDisplay p, .booksA{
+    position:relative;
+    width:500px;
+    left:15px;
+}
+
+.bookRate, .bookShare {
+    position:absolute;
+    top:0;
+    right: 20px;
+}
+
+.bookRate a {
+    float:left;
+    margin-left:10px;
+}
+
+.booksA, .bookRate a {
+	background: #a1a1a1;
+    font-size:12px;
+    padding: 5px;
+    text-decoration:none;
+    color:#000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.booksA {
+	margin-right: 5px;
+}
+
+.booksA:hover, .bookRate a:hover {
+    background: #919191;
+}
+
+.bookShare {
+    top: 50px;
+    right:15px;
+}
+
+#bookInfo p{
+	color:#000;
+	padding: 0px 10px;
+}
+
+#cartPageList ul li {
+	width: 700px;
+	background:#fff;
+	border-left:none;
+	border-right:none;
+	border-top:none;
+	margin-bottom:0;
+	margin-top:0;
+	text-align:left;
+	padding:10px;
+	position:relative;
+}
+
+#cartPageList ul li:hover {
+	background:#fff;
+}
+
+#cartPageList ul li img{
+	border: #000 1px solid;
+}
+
+#cartPageList ul li p {
+	position:absolute;
+	top:0;
+	left: 120px;
+	color:#000000;
+}
+
+.removeBookX {
+	height:24px;
+	width:24px;
+	background:url('../images/x_button_ss.jpg') no-repeat left top;
+	display:block;
+	position:absolute;
+	top:0;
+	right:0px;
+}
+
+.removeBookX:hover {
+	background-position: 0px -20px;
+	cursor:pointer;
+}
+
+#contentForm {
+	padding:20px;
+	padding-top:0;
+}
+
+#contentForm p {
+	color:#000;
+}
+
+.sample {
+	display:inline;
+	width:70px;
+	height:28px;
+	position:relative;
+	background:url('../images/abooksample.png');
+	left:0px;
+	border:none;
+	margin-top:10px;
+}
+
+#largeLogin
+{
+width:300px;
+border:3px solid #fff;
+margin: 50px auto 0;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+padding:1em;
+}
+
+#largeLogin label
+{
+margin-top:0;
+font-family: arial black, arial;
+text-align:center;
+text-shadow: 0 1px 0 #fff;
+text-transform:none;
+}
+
+#largeLogin input[type=text], #largeLogin input[type=password]
+{
+display:block;
+width:280px;
+padding: 5px;
+-moz-border-radius:1px;
+-webkit-border-radius:1px;
+}
+
+#largeLogin input[type=submit]
+{
+border:none;
+padding: 6px;
+margin-right:10px;
+width:140px;
+font-size:12px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+background:#348075;
+color:white;
+box-shadow:0 1px 0 white;
+-moz-box-shadow:0 1px 0 white;
+-webkit-box-shadow:0 1px 0 white;
+}
+
+#largeLogin input[type=submit]:hover
+{
+background:#287368;
+cursor:pointer;
+}
+
+.wishlistSelect {
+    margin-left:20px;
+}

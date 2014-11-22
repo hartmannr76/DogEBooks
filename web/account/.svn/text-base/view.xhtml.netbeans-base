@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../templates/mainTemplate.xhtml">
+
+            <ui:define name="pageTitle">
+                Account Main
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="content">
+			<div id="contentWrap" class="wrap">
+				<div id="leftNavAccount">
+					<h:form>
+					<ul class="mainCatDrop">
+                                            <h:commandLink action="view.xhtml?faces-redirect=true" value="My Account" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="cart.xhtml?faces-redirect=true" value="My Cart" />
+						<h:commandLink action="checkouts.xhtml?faces-redirect=true" value="My Checkouts" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="wishlists.xhtml?faces-redirect=true" value="Wishlists" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="#" value="View Wait List" rendered="#{accountReq.login() != null}" />
+						<h:commandLink action="#" value="Rate Titles" rendered="#{accountReq.login() != null}" />
+					</ul>
+                                    </h:form>
+				</div>
+					<div id="rightContent">
+                                            <h:form>
+						<p><h:commandLink action="#{viewReq.viewIndex()}">Home</h:commandLink> > <a href="view.html">My Account</a> </p>
+                                                </h:form>
+						<p><a href="#">Change Password</a>
+						<table>
+							<tr>
+                                                            <td>Name:</td><td><h:outputText value="#{accountReq.currentUser.firstName} #{accountReq.currentUser.lastName}" /> <a href="#">Edit</a></td>
+							</tr>
+							<tr>
+                                                            <td>Email:</td><td><h:outputText value="#{accountReq.currentUser.userEmail}" /> <a href="#">Edit</a></td>
+							</tr>
+							<tr>
+								<td>User Since:</td><td>01 - 22 - 2008</td>
+							</tr>
+							<tr>
+								<td>Books Checked Out:</td><td>21</td>
+							</tr>
+						</table>
+						</p>
+					</div>
+				</div>
+		</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

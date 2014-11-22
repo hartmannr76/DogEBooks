@@ -1,0 +1,324 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller.requests;
+
+import controller.managers.ItemManager;
+import enums.Category;
+import enums.ItemType;
+import item.EBook;
+import item.Item;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.NavigationHandler;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import sessions.UserSession;
+
+/**
+ * This is our main visual controlling bean. It controls most user view requests, and based on
+ * the page and information asked to be displayed, it will populate the proper data structures
+ * and fill them in with the required information
+ * 
+ * @author Ricky
+ */
+
+@ManagedBean (name = "viewReq")
+@ViewScoped
+public class ViewRequestController implements Serializable {
+
+    int typeToView;
+    int categoryToView;
+    int itemToView;
+    @EJB 
+    UserSession us;
+    @EJB
+    ItemManager im;
+    List<Item> userCart;
+    List<Item> listOfeItems;
+    //      Using set numbers to represent locations on different pages (i.e. Index: ebooks, audiobooks, music; Type: newest, featured,
+    //      highest rated)
+    List<Item> set1; 
+    List<Item> set2;
+    List<Item> set3;
+    Item viewableItem;
+    String currentList;
+    ItemType typeViewed;
+    Category categoryViewed;
+
+    /**
+     * In order to populate information to view a wishlist that the user has requested,
+     * we need to grab the hidden element from the prev page request
+     */
+    
+    public ViewRequestController() {  
+        this.currentList = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("list");
+        System.out.print(currentList);
+    }
+    
+    
+    /**
+     * This is one of the more important function in this structure, it finds the page request in the url and 
+     * will populate data structures for the requested page to use
+     */
+    @PostConstruct
+    public void init() {
+        userCart = us.getObjCart();
+        if(getPageSet().equals("type")) {
+            if(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("typeId") != null) 
+                typeToView = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("typeId"));
+            else typeToView = 1;
+            System.out.print("Preparing type page..." + typeToView);
+            prepareTypePage();
+        } 
+        else if(getPageSet().equals("category")) {
+            if(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("catId") != null)
+                categoryToView = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("catId"));
+            else categoryToView = 1;
+            System.out.print("Preparing category page..." + categoryToView);
+            prepareCategoryPage();
+        }
+        else if(getPageSet().equals("item")) {
+            if(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("bookId") != null)
+                itemToView = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("bookId"));
+            else itemToView = 1;
+            System.out.print("Preparing item page..." + itemToView);
+            prepareItemPage();
+        }
+        else if(getPageSet().equals("account")) {
+            System.out.print("Preparing account page...");
+            if(currentList != null)
+                listOfeItems = us.getUser().getSpecificWishlist(currentList);
+        }
+        else {
+            System.out.print("Preparing index page...");
+            System.out.print(getPageSet());
+            prepareIndexPage();
+        }
+    }
+    
+    public void attrListener(ActionEvent event){
+	currentList = (String)event.getComponent().getAttributes().get("list");
+        System.out.print(currentList);
+    }
+    
+    /**
+     * Generic function to figure out what the page request is
+     * @return the location of the request
+     */
+    
+    public String getPageSet(){
+        String orig = FacesContext.getCurrentInstance().getViewRoot().getViewId();
+        String[] postSplit = orig.split("/");
+        return postSplit[1];
+    }
+    
+    /*
+     * Prepare pages
+     */
+    
+    public void prepareTypePage() {
+        for(ItemType it : ItemType.values()) {
+            if(it.getTypeId() == typeToView)
+                typeViewed = it;
+        }
+                
+        List<List<Item>> setList = im.getTypeLists(typeViewed);
+        set1 = setList.get(0);
+        
+        set2 = new ArrayList<Item>();
+        if(typeToView == 1)
+            set2.add(im.getItemById(5));
+        else
+            set2.add(im.getItemById(6));
+        set2.add(im.getItemById(2));
+        set2.add(im.getItemById(3));
+        set2.add(im.getItemById(7));
+        
+        set3 = setList.get(1);
+        
+    }
+    
+    /**
+     * Function prepares a data structure for the "Category" page to use populated with
+     * the corresponding items
+     */
+    
+    public void prepareCategoryPage() {
+        for(Category c : Category.values()) {
+            if(c.getCategoryId() == categoryToView) {
+                categoryViewed = c;
+                listOfeItems = im.getItemsByCategory(c);
+            }
+        }   
+        
+        for(ItemType it : ItemType.values()) {
+            for(Category c : it.getCategoriesForType())
+                if(c == categoryViewed) {
+                    typeViewed = it;
+                }
+        }
+    }
+    
+    /**
+     * Function prepares a data structure for the "Item" page to use populated with
+     * the corresponding items
+     */
+    
+    public void prepareItemPage() { 
+        viewableItem = im.getItemById(itemToView);
+        categoryToView = viewableItem.getItemCategory();
+        typeToView = viewableItem.getItemType();
+        
+        for(Category c : Category.values()) {
+            if(c.getCategoryId() == categoryToView) {
+                categoryViewed = c;
+            }
+        } 
+        
+        for(ItemType it : ItemType.values()) {
+            if(it.getTypeId() == typeToView)
+                typeViewed = it;
+        }
+    }
+    
+    /**
+     * Function prepares a data structure for the "Index" page to use populated with
+     * the corresponding items
+     */
+    
+    public void prepareIndexPage() {
+        set1 = new ArrayList<Item>();
+        set1.add(im.getItemById(1));
+        set1.add(im.getItemById(2));
+        set1.add(im.getItemById(3));
+        set1.add(im.getItemById(4));
+        set1.add(im.getItemById(5));
+        
+        set2 = new ArrayList<Item>();
+        set2.add(im.getItemById(6));
+        set2.add(im.getItemById(7));
+        set2.add(im.getItemById(8));
+        set2.add(im.getItemById(9));
+        set2.add(im.getItemById(10));
+        
+        set3 = new ArrayList<Item>();
+        set3.add(im.getItemById(1));
+        set3.add(im.getItemById(2));
+        set3.add(im.getItemById(3));
+        set3.add(im.getItemById(4));
+        set3.add(im.getItemById(5));
+    }
+    
+    public List<Item> getUserCart() {
+        return userCart;
+    }
+    
+    public List<Item> getListOfeItems() {
+        return listOfeItems;
+    }
+    
+    public List<Item> getSet1() {
+        return set1;
+    }
+    
+    public List<Item> getSet2() {
+        return set2;
+    }
+    
+    public List<Item> getSet3() {
+        return set3;
+    }
+    
+    public Item getViewableItem() {
+        return viewableItem;
+    }
+    
+    public String getCategoryToView() {
+        for(ItemType it : ItemType.values()) {
+            if(it.getTypeId() == typeToView)
+                typeViewed = it;
+        }
+        return typeViewed.getTextRep();
+    }
+
+    public void setCategoryToView(int categoryToView) {
+        this.categoryToView = categoryToView;
+    }
+
+    public String getSTypeToView() {
+        int id = getITypeToView();
+        if(id == 1)
+            return "eBooks";
+        else if(id == 2)
+            return "Audiobooks";
+        else if(id == 3)
+            return "Music";
+        else
+            return "eBooks";
+    }
+    
+    public int getITypeToView() {
+        return typeToView;
+    }
+
+    public void setTypeToView(int typeToView) {
+        this.typeToView = typeToView;
+    }
+    
+    public String getCurrentList() {
+        return currentList;
+    }
+
+    public void setCurrentList(String currentList) {
+        this.currentList = currentList;
+    }
+    
+    public String viewBook() {
+        int id = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("bookId"));
+        return "/item/view.xhtml?faces-redirect=true&bookId=" + id;
+    }
+    
+    public String viewCategory() {
+        int id = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("catId"));
+        return "/category/view.xhtml?faces-redirect=true&catId=" + id;
+    }
+
+    public String viewType() {
+        int id = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("typeId"));
+        return "/type/view.xhtml?faces-redirect=true&typeId=" + id;
+    }
+    
+    public String viewIndex() {
+        return "../index.xhtml?faces-redirect=true";
+    }
+    
+    public String viewWishlist() {
+        return "/account/viewList.xhtml";
+    }
+
+    public Category getCategoryViewed() {
+        return categoryViewed;
+    }
+
+    public void setCategoryViewed(Category categoryViewed) {
+        this.categoryViewed = categoryViewed;
+    }
+
+    public ItemType getTypeViewed() {
+        return typeViewed;
+    }
+
+    public void setTypeViewed(ItemType typeViewed) {
+        this.typeViewed = typeViewed;
+    }
+}
